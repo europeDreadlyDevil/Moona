@@ -21,7 +21,7 @@ thread2 = ["service3"]
 
 ## Installation
 1. From Cargo: ```cargo install moona```
-2. [Releases]()
+2. [Releases](https://github.com/europeDreadlyDevil/Moona/releases/tag/moona-v0.1.0)
 
 ## License
 * [LICENSE-APACHE](LICENSE-APACHE)
