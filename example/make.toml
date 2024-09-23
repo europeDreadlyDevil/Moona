@@ -9,5 +9,5 @@ service2 = "cargo run --manifest-path {paht2}"
 service3 = "cargo run --manifest-path {paht3}"
 
 [run]
-thread1 = ["servicee1", "service2"]
+thread1 = ["service1", "service2"]
 thread2 = ["service3"]
