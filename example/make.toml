@@ -5,8 +5,8 @@ path3 = "test/path"
 
 [rules]
 service1 = "cargo run --manifest-path {path1}"
-service2 = "cargo run --manifest-path {paht2}"
-service3 = "cargo run --manifest-path {paht3}"
+service2 = "cargo run --manifest-path {path2}"
+service3 = "cargo run --manifest-path {path3}"
 
 [run]
 thread1 = ["service1", "service2"]
