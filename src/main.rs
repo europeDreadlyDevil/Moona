@@ -8,5 +8,5 @@ mod maker;
 async fn main() {
     let cli = CLI::parse();
     let maker = Maker::new();
-    maker.make(cli.get_path())
+    maker.make(cli.get_path()).await
 }

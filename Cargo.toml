@@ -1,6 +1,6 @@
 [package]
 name = "moona"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
 description = "Build-util for easy configure run for single and multi service app"
 categories = ["config", "development-tools::build-utils"]
@@ -11,3 +11,5 @@ clap = {version = "4.5.17", features = ["derive"]}
 toml = "0.8.19"
 serde = {version = "1.0.210", features = ["derive"]}
 tokio = {version = "1.40.0", features = ["io-std", "rt-multi-thread", "rt", "macros"]}
+walkdir = "2.5.0"
+futures = "0.3.30"

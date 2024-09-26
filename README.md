@@ -23,6 +23,10 @@ thread2 = ["service3"]
 1. From Cargo: ```cargo install moona```
 2. [Releases]()
 
+## Use
+1. ```moona```
+2. ```moona <PATH>```
+
 ## License
 * [LICENSE-APACHE](LICENSE-APACHE)
 * [LICENSE-MIT](LICENSE-MIT)
