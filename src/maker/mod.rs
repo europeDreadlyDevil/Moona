@@ -52,8 +52,6 @@ impl Maker {
                 }
             }));
         }
-        while let Some(_) = rule_stack.next().await {
-
-        }
+        while rule_stack.next().await.is_some() {}
     }
 }

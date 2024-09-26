@@ -13,3 +13,6 @@ serde = {version = "1.0.210", features = ["derive"]}
 tokio = {version = "1.40.0", features = ["io-std", "rt-multi-thread", "rt", "macros"]}
 walkdir = "2.5.0"
 futures = "0.3.30"
+
+[profile.release]
+opt-level = 3
