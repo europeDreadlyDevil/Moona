@@ -6,7 +6,10 @@ use walkdir::WalkDir;
 #[derive(Parser)]
 #[command(about)]
 pub struct CLI {
-    path: Option<PathBuf>
+    path: Option<PathBuf>,
+    ///Run current rule
+    #[arg(short, long)]
+    rule: Option<String>,
 }
 
 impl CLI {
@@ -22,5 +25,9 @@ impl CLI {
             }
             panic!("Make.toml not found")
         }
+    }
+
+    pub fn get_rule(&self) -> Option<String> {
+        self.rule.clone()
     }
 }

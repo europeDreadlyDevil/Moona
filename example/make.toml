@@ -1,6 +1,2 @@
 [rules]
-run = "calc"
-
-[run]
-1 = ["run", "run"]
-2 = ["run"]
+neo = "neofetch"
