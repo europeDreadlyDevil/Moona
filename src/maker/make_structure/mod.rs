@@ -6,5 +6,5 @@ use serde::Deserialize;
 pub struct MakeStruct {
     pub(crate) rules: HashMap<String, String>,
     pub(crate) vars: Option<HashMap<String, String>>,
-    pub(crate) run: HashMap<String, Vec<String>>
+    pub(crate) run: Option<HashMap<String, Vec<String>>>
 }

@@ -8,5 +8,9 @@ mod maker;
 async fn main() {
     let cli = CLI::parse();
     let maker = Maker::new();
-    maker.make(cli.get_path()).await
+    if let Some(rule) = cli.get_rule() {
+        maker.make_rule(cli.get_path(), rule).await;
+    } else {
+        maker.make(cli.get_path()).await
+    }
 }
