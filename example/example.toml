@@ -4,10 +4,17 @@ path2 = "example/path"
 path3 = "test/path"
 
 [rules]
+build1 = "cargo build --manifest-path {path1}"
 service1 = "cargo run --manifest-path {path1}"
+build2 = "cargo build --manifest-path {path1}"
 service2 = "cargo run --manifest-path {paht2}"
 service3 = "cargo run --manifest-path {paht3}"
 
-[run]
+[threads]
+build_thread1 = ['build1']
+build_thread2 = ['build2']
 thread1 = ["servicee1", "service2"]
 thread2 = ["service3"]
+
+[order]
+order = [['build_thread1', 'build_thread2'], ['thread1', 'thread2']]

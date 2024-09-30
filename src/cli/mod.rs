@@ -3,8 +3,8 @@ use std::path::PathBuf;
 use clap::Parser;
 use walkdir::WalkDir;
 
-#[derive(Parser)]
-#[command(about)]
+#[derive(Parser, Debug)]
+#[command(about, version)]
 pub struct CLI {
     path: Option<PathBuf>,
     ///Run current rule

@@ -1,0 +1,19 @@
+[vars]
+path_1 = "/home/devil/RustroverProjects/Moona/test/integrated_test_1/"
+path_2 = "/home/devil/RustroverProjects/Moona/test/integrated_test_2/"
+path_1_2 = "target/debug/integrated_test_1"
+path_2_2 = "target/debug/integrated_test_2"
+
+[rules]
+build_1 = "cargo build --manifest-path {path_1}Cargo.toml"
+build_2 = "cargo build --manifest-path {path_2}Cargo.toml"
+run_1 = "sudo {path_1}{path_1_2}"
+run_2 = "sudo {path_2}{path_2_2}"
+
+[run]
+thread_build = ['build_1', 'build_2']
+thread_run_1 = ['run_1']
+thread_run_2 = ['run_2']
+
+[order]
+order = [['thread_build'], ['thread_run_1', 'thread_run_2']]

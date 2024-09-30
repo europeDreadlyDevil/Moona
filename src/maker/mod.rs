@@ -5,9 +5,10 @@ use std::process::{Command, Stdio};
 use std::sync::Arc;
 use futures::stream::FuturesUnordered;
 use futures::StreamExt;
-use crate::maker::make_structure::MakeStruct;
+use crate::maker::make_structure::{MakeStruct};
 
 mod make_structure;
+#[derive(Debug)]
 pub struct Maker {}
 
 impl Maker {
@@ -56,10 +57,39 @@ impl Maker {
         let mut content = "".to_string();
         file.read_to_string(&mut content).unwrap();
         let mut mks = toml::from_str::<MakeStruct>(&content).unwrap();
-
         self.get_vars(&mut mks);
-
         let rules = Arc::new(mks.rules.clone());
+        if mks.run.is_some(){
+            if let Some(order) = mks.order {
+                let mut order = order.order.iter();
+                while let Some(order) = order.next() {
+                    let mut buf = FuturesUnordered::new();
+                    for thread in order {
+                        let rules_arc = rules.clone();
+                        let run_trace = mks.run.clone().unwrap().get(thread).unwrap().clone();
+                        buf.push(tokio::task::spawn(async move {
+                            for field in run_trace {
+                                if let Some(action) = rules_arc.get(&field) {
+                                    let mut commands = action.split(" ").collect::<Vec<&str>>();
+                                    let command = commands.remove(0);
+                                    let args = commands;
+                                    let mut action = Command::new(command);
+                                    action.args(args).stdout(Stdio::inherit());
+                                    if let Err(e) = action.spawn().unwrap().wait_with_output() {
+                                        panic!("{}", e)
+                                    }
+                                }
+                            }
+                        }))
+                    }
+                    loop {
+                        while buf.next().await.is_some() {}
+                        break;
+                    }
+                }
+                return;
+            }
+        }
         let mut rule_stack = FuturesUnordered::new();
         if mks.run.is_some() {
             for (_, run_trace) in mks.run.unwrap().iter() {
