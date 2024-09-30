@@ -10,13 +10,20 @@ path2 = "example/path"
 path3 = "test/path"
 
 [rules]
+build1 = "cargo build --manifest-path {path1}"
 service1 = "cargo run --manifest-path {path1}"
-service2 = "cargo run --manifest-path {path2}"
-service3 = "cargo run --manifest-path {path3}"
+build2 = "cargo build --manifest-path {path1}"
+service2 = "cargo run --manifest-path {paht2}"
+service3 = "cargo run --manifest-path {paht3}"
 
-[run]
-thread1 = ["service1", "service2"]
+[threads]
+build_thread1 = ['build1']
+build_thread2 = ['build2']
+thread1 = ["servicee1", "service2"]
 thread2 = ["service3"]
+
+[order]
+order = [['build_thread1', 'build_thread2'], ['thread1', 'thread2']]
 ```
 
 ## Installation
@@ -26,6 +33,7 @@ thread2 = ["service3"]
 ## Use
 1. ```moona```
 2. ```moona <PATH>```
+3. ```moona -r <RULE>```
 
 ## License
 * [LICENSE-APACHE](LICENSE-APACHE)
