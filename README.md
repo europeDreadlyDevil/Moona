@@ -16,7 +16,7 @@ build2 = "cargo build --manifest-path {path1}"
 service2 = "cargo run --manifest-path {paht2}"
 service3 = "cargo run --manifest-path {paht3}"
 
-[threads]
+[run]
 build_thread1 = ['build1']
 build_thread2 = ['build2']
 thread1 = ["servicee1", "service2"]
