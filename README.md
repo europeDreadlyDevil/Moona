@@ -19,7 +19,7 @@ service3 = "cargo run --manifest-path {paht3}"
 [run]
 build_thread1 = ['build1']
 build_thread2 = ['build2']
-thread1 = ["servicee1", "service2"]
+thread1 = ["service1", "service2"]
 thread2 = ["service3"]
 
 [order]
